@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>The Vaal Project | Discover the History, Art & People of the Vaal</title>
+    <meta name="title" content="The Vaal Project | Discover the History, Art & People of the Vaal">
+    <meta name="description" content="Explore the digital evolution of the Vaal region. Capturing the grit, soul, and creative history of Sebokeng and Vanderbijlpark through the lens of local influencers.">
+    <meta name="keywords" content="The Vaal Project, Vaal History, Sebokeng, Vanderbijlpark, South African Art, Vaal Influencers">
+    <meta name="author" content="The Vaal Project">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vaal-black: #111111;
+            --vaal-white: #ffffff;
+            --vaal-gray: #f8f8f8;
+            --vaal-dark-accent: #222;
+            --vaal-highlight: #7a1f1f; 
+            --vaal-link: #cf3a3a;
+        }
+
+        /* --- Page Loader --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; display: flex; justify-content: center;
+            align-items: center; z-index: 10000; transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .spinner {
+            width: 40px; height: 40px; border: 4px solid #f3f3f3;
+            border-top: 4px solid #7a1f1f; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader-hidden { opacity: 0; visibility: hidden; }
+
+        /* --- Smooth Scroll Support (Lenis) --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* --- Progress Bar --- */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: #7a1f1f; z-index: 9999;
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--vaal-black); overflow-x: hidden; }
+
+        /* --- Navigation --- */
+        .navbar { padding: 2rem 0; background: transparent; transition: 0.3s; z-index: 1000; }
+        .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .nav-link { font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-left: 2rem; }
+
+        /* --- Hero Section --- */
+        .hero-section { height: 100vh; display: flex; align-items: center; padding-top: 100px; }
+        .hero-title { font-size: 6rem; font-weight: 800; line-height: 0.9; letter-spacing: -3px; text-transform: uppercase; margin-bottom: 40px; min-height: 12rem; }
+        
+        /* Highlight Color for Typewriter */
+        .text-highlight { color: var(--vaal-highlight); }
+
+        .intro-text-box { max-width: 500px; border-left: 3px solid #000; padding-left: 30px; }
+        .intro-tag { font-weight: 700; text-transform: uppercase; font-size: 0.9rem; color: #666; margin-bottom: 10px; display: block; }
+        .intro-header { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+
+        /* --- VIDEO SECTION --- */
+        .video-intro-container { background: #000; padding: 0; width: 100%; overflow: hidden; }
+        .hero-video-full { flex: 1; position: relative; background: #000; height: 100vh; }
+        .hero-video-full iframe { width: 100%; height: 100%; border: none; }
+
+.hero-video-full {
+    background: #000; /* Keeps the area black while loading */
+    position: relative;
+    overflow: hidden;
+}
+
+#player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #000;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 12); /* Dark background to hide suggestions */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+}
+
+.video-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay-content { text-align: center; }
+
+
+        /* --- HISTORY SECTION --- */
+        .history-section { display: flex; flex-wrap: wrap; min-height: 100vh; border-top: 1px solid #eee; }
+        .history-left, .history-right { padding: 100px 8%; flex: 1; min-width: 350px; display: flex; flex-direction: column; justify-content: center; }
+        .history-left { background: #fff; }
+        .history-right { background: #eee; }
+        .history-title { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
+        
+        .location-link { text-decoration: none; color: inherit; display: block; transition: 0.3s; }
+        .location-box { margin-bottom: 40px; position: relative; padding-left: 20px; border-left: 1px solid #ccc; transition: border-color 0.3s, transform 0.3s; }
+        .location-link:hover .location-box { border-left: 3px solid #000; transform: translateX(10px); }
+        .location-box h4 { font-weight: 800; text-transform: uppercase; }
+
+        /* --- Influencer Cards --- */
+        .influencer-card { text-align: center; transition: 0.4s; text-decoration: none; color: inherit; display: block; margin-bottom: 30px; }
+        .influencer-img { 
+            width: 200px; height: 200px; background: #ddd; border-radius: 50%; 
+            margin: 0 auto 25px; overflow: hidden; transition: 0.4s; filter: grayscale(100%);
+        }
+        .influencer-img img { width: 100%; height: auto; border-radius: 100px; transition: transform 0.4s; }
+        
+        .influencer-card:hover { transform: translateY(-10px); }
+        .influencer-card:hover .influencer-img { filter: grayscale(0%); }
+        .influencer-card:hover .influencer-img img { transform: scale(1.05); }
+
+        .influencer-card h5 { font-weight: 800; text-transform: uppercase; margin-bottom: 10px; font-size: 1rem; }
+        .influencer-card p { font-size: 0.8rem; color: #666; padding: 0 10%; }
+
+         /* --- MAP SECTION --- */
+        .map-section {
+            width: 100%;
+            /* Changed height to min-height to allow content to breathe */
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 0; /* Consistent spacing with history section */
+            filter: grayscale(100%) invert(10%) contrast(1.8);
+            border-top: 1px solid #eee;
+            background: #fff; /* Ensures no transparency overlap */
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 500px; /* Fixed height for the map itself */
+            border: 0;
+            margin-top: 40px;
+        }
+
+        footer { background: var(--vaal-black); color: #fff; padding: 50px 0; text-align: center; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; }
+
+        .Typewriter__cursor { font-weight: 200; color: #000; }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; min-height: 8rem; }
+            .history-section { min-height: auto; }
+            .history-left, .history-right { padding: 60px 5%; }
+        }
+
+        /* Designer Modal Custom Styling */
+        #designerModal .modal-content {
+            background-color: var(--vaal-white);
+            color: var(--vaal-black);
+        }
+        #designerModal h2 {
+            font-weight: 800;
+        }
+        #designerModal .fw-700 {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--vaal-highlight);
+        }
+        #designerModal li {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+       
+    </style>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+
+    <div id="loader"><div class="spinner"></div></div>
+    <div id="scroll-progress"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">The Vaal Project</a>
+            <div class="ms-auto d-flex">
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#intro">Intro</a>
+                <a class="nav-link" href="#history">Influencers</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section container" id="about">
+        <div class="row w-100">
+            <div class="col-lg-7" data-aos="fade-right">
+                <h1 class="hero-title" id="typewriter-title"></h1>
+            </div>
+            <div class="col-lg-5 d-flex align-items-end pb-5" data-aos="fade-up" data-aos-delay="2500">
+                <div class="intro-text-box">
+                    <span class="intro-tag">About</span>
+                    <h2 class="intro-header">The Project</h2>
+                    <p>
+                        This interactive documentary is structured around four key themes drawn from the capability approach, 
+                        which guide both the collection and interpretation of data. These themes—environmental, social, psychological, and physical capability—provide 
+                        a framework for understanding the different factors that shape an individual’s potential to succeed as a social media influencer.
+                        Throughout the documentary, each theme is explored through participant interviews, offering insight into how these capabilities are experienced 
+                        and developed in real contexts. By engaging with these perspectives, the documentary seeks to highlight which capabilities and practices are 
+                        most effective in supporting the growth and success of emerging influencers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro" class="video-intro-container">
+        <div class="hero-video-full">
+            <div id="player"></div>
+            <div id="video-cover" class="video-overlay">
+                <div class="overlay-content">
+                    <h2 class="history-title text-white">The Vaal Project</h2>
+                    <button onclick="replayVideo()" class="btn btn-outline-light">WATCH AGAIN</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section" id="history">
+        <div class="history-left" data-aos="fade-right">
+            <h2 class="history-title">History of <br>The Vaal</h2>
+            <a href="sebokeng-history.html" class="location-link">
+                <div class="location-box"><h4>Sebokeng</h4><p>A place of rich heritage and resilient spirits.</p></div>
+            </a>
+            <a href="vanderbijlpark-history.html" class="location-link">
+                <div class="location-box"><h4>Vanderbijlpark</h4><p>Designed as the steel hub of Africa.</p></div>
+            </a>
+        </div>
+        
+        <div class="history-right" data-aos="fade-left">
+            <h2 class="history-title text-center">Social Media <br>Influencers</h2>
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    <a href="paul.html" class="influencer-card">
+                        <div class="influencer-img"><img src="assests/paul/profile_photo.webp"/></div>
+                        <h5>Paul</h5>
+                        <!--<p>[Short Bio Here]</p>-->
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="syre-magnolian.html" class="influencer-card">
+                        <div class="influencer-img"><img src="assests/bongani/profile_photo.webp"/></div>
+                        <h5>Syre Magnolian</h5>
+                        <!--<p>[Short Bio Here]</p>-->
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="tumelo.html" class="influencer-card">
+                        <div class="influencer-img"><img src="assests/tumelo/profile_photo.webp"/></div>
+                        <h5>Tumelo</h5>
+                        <!--<p>[Short Bio Here]</p>-->
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section container" data-aos="fade-up">
+        <h2 class="history-title text-center">The Vaal</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d79952.91241372903!2d27.829343735092483!3d-26.63765812866458!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sza!4v1770239224362!5m2!1sen!2sza" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <section class="creator-profile py-5 border-top" id="creator" style="background: #fff;">
+        <div class="container py-5" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                    <div class="influencer-img mb-4" style="width: 100%; height: auto; max-width: 300px;">
+                        <img src="assests/Thabo_Makhoana/Thabo Makhoana.webp" alt="Thabo Makhoana">
+                    </div>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://instagram.com/hazer_za" target="_blank" class="text-dark fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="https://tiktok.com/@hazer_za" target="_blank" class="text-dark fs-4"><i class="bi bi-tiktok"></i></a>
+                        <a href="https://facebook.com/ThaboHazerMakhoana" target="_blank" class="text-dark fs-4"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <span class="intro-tag">Meet the Creator</span>
+                    <h2 class="history-title mb-4" style="font-size: 3rem; line-height: 1;">Thabo <span class="text-highlight">Makhoana</span></h2>
+                    
+                    <div style="max-width: 700px; line-height: 1.6;">
+                        <p class="fw-bold mb-3">Born and raised in Sebokeng Zone 7, Vaal Triangle.</p>
+                        <p>I am a photographer, cinematographer, and music composer, working across visual and sound-based storytelling practices. My work is rooted in a deep love for visual arts and collaborative creation.</p>
+                        <p>I enjoy working closely with artists, using image, motion, and sound to tell stories that reflect lived experiences, identity, and place. Alongside my creative practice, I also work as an artist manager, supporting emerging creatives in shaping their careers and navigating the creative industry.</p>
+                        <p class="mb-0">Through my work, I am committed to creating meaningful narratives that highlight local talent, amplify creative voices, and contribute to the evolving cultural landscape of the Vaal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        The Vaal Project &copy; 2026 | 
+        <span style="text-transform: none; font-weight: 400;">
+            Designed by: <a href="#" data-bs-toggle="modal" data-bs-target="#designerModal" style="color: var(--vaal-link); text-decoration: none; font-weight: 700;">I'm Jacob</a>
+        </span>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+    <script>
+        window.addEventListener('load', () => { document.getElementById('loader').classList.add('loader-hidden'); });
+
+        AOS.init({ duration: 1000, once: true });
+
+        // Looping Typewriter Setup with Highlights
+        const title = document.getElementById('typewriter-title');
+        const typewriter = new Typewriter(title, {
+            loop: true,
+            delay: 75,
+            deleteSpeed: 50,
+            cursor: '|'
+        });
+
+        typewriter
+            .pauseFor(1000)
+            .typeString('The Vaal<br><span class="text-highlight">Project</span>')
+            .pauseFor(2500)
+            .deleteAll()
+            .typeString('The Vaal<br><span class="text-highlight">History</span>')
+            .pauseFor(2500)
+            .deleteAll()
+            .typeString('The Vaal<br><span class="text-highlight">People</span>')
+            .pauseFor(2500)
+            .start();
+
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) lenis.scrollTo(target);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
+        });
+
+     
+
+// 1. This function is called automatically by the API
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        videoId: 'Es-_vlzUxRc',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 1,
+            'rel': 0,
+            'modestbranding': 1
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerStateChange(event) {
+    const cover = document.getElementById('video-cover');
+    // State 0 is "ENDED"
+    if (event.data === YT.PlayerState.ENDED) {
+        cover.classList.add('active');
+    } else if (event.data === YT.PlayerState.PLAYING) {
+        cover.classList.remove('active');
+    }
+}
+
+function replayVideo() {
+    player.playVideo();
+    document.getElementById('video-cover').classList.remove('active');
+}
+    </script>
+
+    <div class="modal fade" id="designerModal" tabindex="-1" aria-labelledby="designerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="bi bi-person-badge text-dark" style="font-size: 3rem;"></i>
+                    </div>
+                    <h2 class="fw-800 text-uppercase mb-3" style="letter-spacing: -1px;">I'm Jacob</h2>
+                    <p class="text-muted mb-4">Web Developer . Graphic Designer . Technician</p>
+                    <hr class="w-25 mx-auto mb-4">
+                    
+                    <h6 class="text-uppercase fw-700 mb-3">Services</h6>
+                    <ul class="list-unstyled mb-4">
+                        <li>Website Design</li>
+                        <li>Graphic Design</li>
+                        <li>UI/UX Design</li>
+                        <li>Technician</li>
+                    </ul>
+
+                    <h6 class="text-uppercase fw-700 mb-3">Contact</h6>
+                    <p class="mb-1">
+                        <a href="mailto:ntsoele.sello@protonmail.com" class="text-decoration-none text-dark">
+                            <i class="bi bi-envelope-fill me-2"></i>ntsoele.sello@protonmail.com
+                        </a>
+                    </p>
+                    <p>
+                        <a href="tel:0753170287" class="text-decoration-none text-dark">
+                            <i class="bi bi-telephone-fill me-2"></i>0753170287
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
