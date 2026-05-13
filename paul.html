@@ -138,10 +138,10 @@
         }
 
         .hero-video-wrapper { display: flex; width: 100%; height: 100vh; background: #000; overflow: hidden; }
-        .hero-video-full { flex: 1; position: relative; background: #000; }
+        .hero-video-full { flex: 1; position: relative; background: #000; order: 1; }
         .hero-video-full iframe { width: 100%; height: 100%; border: none; }
 
-        .hero-identity-overlay {
+        .hero-identity-overlay {order: 2;
             width: 30%; height: 100%; background: var(--vaal-black); color: #fff; 
             display: flex; flex-direction: column; padding: 80px 4% 40px;
             filter: grayscale(100%); overflow-y: auto;
@@ -216,12 +216,14 @@
             }
             
             /* Hero Section Mobile */
-            .hero-video-full {
+            .hero-video-full { order: 2;
                 height: 56.25vw;
                 min-height: 200px;
             }
+
+            #player {height: 350px;}
             
-            .hero-identity-overlay {
+            .hero-identity-overlay { order: 1;
                 padding: 1.5rem !important;
             }
             
@@ -359,7 +361,7 @@
                 </div>
                 <div class="nav-modal-body">
                     <a class="modal-nav-link" href="index.html">Home</a>
-                    <a class="modal-nav-link" href="index.html#history">Back to History</a>
+                    <a class="modal-nav-link" href="index.html#artists">Back to Artists</a>
                     <div class="modal-footer-links">
                         <small>The Vaal Project &copy; 2026</small>
                     </div>
@@ -386,6 +388,7 @@
                 skateboarding as a transformative tool to instill discipline, foster self-confidence, and promote social cohesion among the 
                 next generation.</p>
         </div>
+        
     </div>
 
     <main class="container-fluid px-0" style="background: #eee;">
