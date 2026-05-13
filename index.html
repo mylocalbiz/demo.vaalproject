@@ -16,6 +16,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assests/fonts/fontawesome-free-6.7.2-web/css/all.min.css">
 
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
     
     <style>
         :root {
@@ -56,8 +58,10 @@
         body { font-family: 'Inter', sans-serif; color: var(--vaal-black); overflow-x: hidden; }
 
         /* --- Navigation (Desktop) --- */
-        .navbar { padding: 2rem 0; background: transparent; transition: 0.3s; z-index: 1000; }
-        .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .navbar {padding: 1rem 0; background: transparent; transition: 0.3s; z-index: 1000; background: var(--vaal-black);}
+        .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; color: white; }
+        .navbar-brand:hover {color: var(--vaal-link);}
+        
         
         /* Desktop nav links - visible on larger screens */
         .desktop-nav-links {
@@ -70,9 +74,9 @@
             font-size: 0.8rem; 
             margin-left: 2rem;
             text-decoration: none;
-            color: var(--vaal-black);
+            color: var(--vaal-white);
         }
-        
+        .nav-link:hover {color: var(--vaal-link);}
         /* Mobile menu button - hidden on desktop */
         .mobile-menu-btn {
             display: none;
@@ -380,7 +384,6 @@
             /* Adjust navbar for mobile */
             .navbar {
                 padding: 0.75rem 0 !important;
-                background: rgba(255, 255, 255, 0.98) !important;
                 backdrop-filter: blur(8px);
                 box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
             }
@@ -671,7 +674,7 @@
             </div>
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" type="button" data-bs-toggle="modal" data-bs-target="#navModal">
-                <i class="bi bi-list"></i>
+                <i class="bi bi-list" style="color: white;"></i>
             </button>
         </div>
     </nav>
@@ -681,14 +684,14 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="nav-modal-header">
-                    <a class="navbar-brand" href="#">The Vaal Project</a>
+                    <a class="navbar-brand" href="#" style="color: #000;">The Vaal Project</a>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="nav-modal-body">
                     <a class="modal-nav-link" href="#about" data-bs-dismiss="modal">About</a>
                     <a class="modal-nav-link" href="#mindmap" data-bs-dismiss="modal">Mind Map</a>
                     <a class="modal-nav-link" href="#intro" data-bs-dismiss="modal">Intro Video</a>
-                    <a class="modal-nav-link" href="#history" data-bs-dismiss="modal">Influencers</a>
+                    <a class="modal-nav-link" href="#history" data-bs-dismiss="modal">Artists</a>
                     <a class="modal-nav-link" href="#history" data-bs-dismiss="modal">Vaal Places</a>
                     <div class="modal-footer-links">
                         <small>The Vaal Project &copy; 2026</small>
@@ -709,7 +712,7 @@
                     <h2 class="intro-header">The Project</h2>
                     <p>
                         This interactive documentary is structured around four key themes drawn from the capability approach, 
-                        which guide both the collection and interpretation of data. These themes—environmental, social, psychological, and physical capability—provide 
+                        which guide both the collection and interpretation of data. These themes environmental, social, psychological, and physical capability provide 
                         a framework for understanding the different factors that shape an individual's potential to succeed as a social media influencer.
                         Throughout the documentary, each theme is explored through participant interviews, offering insight into how these capabilities are experienced 
                         and developed in real contexts. By engaging with these perspectives, the documentary seeks to highlight which capabilities and practices are 
@@ -745,7 +748,7 @@ mindmap
     id{{History of The Vaal}}
       id(<a href="sebokeng-history.html"><i class="fa fa-link" aria-hidden="true"></i> Sebokeng</a>)
       id(<a href="vanderbijlpark-history.html"><i class="fa fa-link" aria-hidden="true"></i> Vanderbijlpark</a>)
-    id{{The Vaal Influencers}}
+    id{{The Vaal Artists}}
       id(<a href="tumelo.html"><i class="fa fa-link" aria-hidden="true"></i> Tumelo</a>)
       id(<a href="paul.html"><i class="fa fa-link" aria-hidden="true"></i> Paul</a>)
       id(<a href="syre-magnolian.html"><i class="fa fa-link" aria-hidden="true"></i> Syre Magnolian</a>)
@@ -778,7 +781,7 @@ mindmap
         </div>
         <div id="artists"></div>
         <div class="history-right" data-aos="fade-up" >
-            <h2 class="history-title text-center">Social Media <br>Influencers</h2>
+            <h2 class="history-title text-center">Artists</h2>
             <div class="row mt-2">
                 <div class="col-md-4">
                     <a href="paul.html" class="influencer-card">
@@ -940,43 +943,25 @@ mindmap
     });
 </script>
 
-    <div class="modal fade" id="designerModal" tabindex="-1" aria-labelledby="designerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center p-5">
-                    <div class="mb-4">
-                        <i class="bi bi-person-badge text-dark" style="font-size: 3rem;"></i>
-                    </div>
-                    <h2 class="fw-800 text-uppercase mb-3" style="letter-spacing: -1px;">I'm Jacob</h2>
-                    <p class="text-muted mb-4">Web Developer . Graphic Designer . Technician</p>
-                    <hr class="w-25 mx-auto mb-4">
-                    
-                    <h6 class="text-uppercase fw-700 mb-3">Services</h6>
-                    <ul class="list-unstyled mb-4">
-                        <li>Website Design</li>
-                        <li>Graphic Design</li>
-                        <li>UI/UX Design</li>
-                        <li>Technician</li>
-                    </ul>
+    <script>
+    // Function to load the designer details modal
+    function loadDesignerModal() {
+        fetch('includes/designer-details.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(data => {
+                // Insert the modal at the end of the body
+                document.body.insertAdjacentHTML('beforeend', data);
+            })
+            .catch(error => console.error('Error loading modal:', error));
+    }
 
-                    <h6 class="text-uppercase fw-700 mb-3">Contact</h6>
-                    <p class="mb-1">
-                        <a href="mailto:ntsoele.sello@protonmail.com" class="text-decoration-none text-dark">
-                            <i class="bi bi-envelope-fill me-2"></i>ntsoele.sello@protonmail.com
-                        </a>
-                    </p>
-                    <p>
-                        <a href="tel:0753170287" class="text-decoration-none text-dark">
-                            <i class="bi bi-telephone-fill me-2"></i>0753170287
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    // Run the function when the DOM is ready
+    document.addEventListener('DOMContentLoaded', loadDesignerModal);
+    </script>
+    
 
     <!-- Mermaid with Tidy-Tree Layout Support -->
     <script type="module">
