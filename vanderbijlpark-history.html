@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>History of Vanderbijlpark | The Vaal Project</title>
     <meta name="description" content="Discover the industrial and urban history of Vanderbijlpark. Exploring its unique planned layout and role in the development of the Vaal region.">
     <meta name="keywords" content="Vanderbijlpark History, Iscor History, Vaal Industry, Planned Cities South Africa">
@@ -18,7 +18,7 @@
             --vaal-white: #ffffff;
             --vaal-gray: #f8f8f8;
             --vaal-dark-accent: #222;
-            --vaal-highlight: #7a1f1f; /* You can change this to a brand color like #FF4500 later */
+            --vaal-highlight: #7a1f1f;
             --vaal-link: #cf3a3a;
         }
 
@@ -48,13 +48,98 @@
             background: #7a1f1f; z-index: 9999;
         }
 
-
         body { font-family: 'Inter', sans-serif; background-color: #fff; color: var(--vaal-black); overflow-x: hidden; }
 
-        /* --- Unified Navigation --- */
+        /* --- Navigation (Desktop) --- */
         .navbar { padding: 2rem 0; background: transparent; transition: 0.3s; z-index: 1000; }
         .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; color: #fff !important; }
-        .nav-link { font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-left: 2rem; color: #fff !important; }
+        
+        /* Desktop nav links */
+        .desktop-nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .desktop-nav-links .nav-link { 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            margin-left: 2rem; 
+            color: #fff !important;
+            text-decoration: none;
+        }
+        
+        /* Mobile menu button - hidden on desktop */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* Navigation Modal Styling */
+        .nav-modal .modal-dialog {
+            margin: 0;
+            max-width: none;
+        }
+        
+        .nav-modal .modal-content {
+            min-height: 100vh;
+            border-radius: 0;
+            background: var(--vaal-white);
+            border: none;
+        }
+        
+        .nav-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-modal-header .navbar-brand {
+            color: var(--vaal-black) !important;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        .nav-modal-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+        
+        .modal-nav-link {
+            display: block;
+            text-align: center;
+            padding: 1.25rem 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: var(--vaal-black);
+            text-decoration: none;
+            width: 100%;
+            transition: 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .modal-nav-link:active {
+            color: var(--vaal-highlight);
+        }
+        
+        .modal-footer-links {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #666;
+        }
 
         /* --- Split Hero Section --- */
         .detail-hero { display: flex; flex-wrap: wrap; min-height: 100vh; background: var(--vaal-black); color: #fff; }
@@ -81,7 +166,7 @@
         .heritage-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0.7; filter: grayscale(100%); }
         .heritage-item:hover img { transform: scale(1.1); opacity: 1; filter: grayscale(0%); }
         .heritage-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: #fff; }
-        .heritage-overlay h4 { font-weight: 800; text-transform: uppercase; margin: 0; }
+        .heritage-overlay h4 { font-weight: 800; text-transform: uppercase; margin: 0; font-size: 1.2rem; }
 
         footer { background: var(--vaal-black); color: #fff; padding: 50px 0; text-align: center; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; }
 
@@ -93,7 +178,154 @@
             .heritage-grid { grid-template-columns: 1fr; }
         }
 
-          /* Designer Modal Custom Styling */
+        /* --- MOBILE STYLES (max-width 480px) --- */
+        @media (max-width: 480px) {
+            /* Hide desktop nav links on mobile */
+            .desktop-nav-links {
+                display: none !important;
+            }
+            
+            /* Show mobile menu button */
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            /* Adjust navbar for mobile */
+            .navbar {
+                
+                margin: 15px; border-radius: 60px;
+                padding: 0.75rem 20px !important;
+                background: rgba(0, 0, 0, 0.7) !important;
+                backdrop-filter: blur(10px);
+            }
+            
+            .navbar .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1rem !important;
+            }
+            
+            /* Hero Section Mobile */
+            .detail-hero {
+                min-height: auto;
+            }
+            
+            .hero-left {
+                height: 50vh !important;
+                min-height: 300px;
+            }
+            
+            .hero-right {
+                padding: 2rem 1.5rem !important;
+            }
+            
+            .hero-right h1 {
+                font-size: 2.2rem !important;
+                letter-spacing: -2px !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-right p {
+                font-size: 0.9rem !important;
+                line-height: 1.6 !important;
+            }
+            
+            /* Section Titles */
+            .section-title {
+                font-size: 2rem !important;
+                margin: 3rem 0 2rem !important;
+                letter-spacing: -1px !important;
+            }
+            
+            /* Milestones Section */
+            .milestone-row {
+                margin-bottom: 2rem !important;
+            }
+            
+            .milestone-year {
+                font-size: 2.5rem !important;
+                min-width: auto !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .milestone-content {
+                padding-left: 1.25rem !important;
+            }
+            
+            .milestone-content h4 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .milestone-content p {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* Heritage Grid */
+            .heritage-grid {
+                gap: 1rem !important;
+                margin-bottom: 3rem !important;
+            }
+            
+            .heritage-item {
+                aspect-ratio: 16/9 !important;
+            }
+            
+            .heritage-overlay {
+                padding: 1rem !important;
+            }
+            
+            .heritage-overlay h4 {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Modal adjustments */
+            .modal-body {
+                padding: 1.5rem !important;
+            }
+            
+            #heritageModal .modal-content .row {
+                flex-direction: column;
+            }
+            
+            #heritageModal #modalImg {
+                height: 250px !important;
+            }
+            
+            #heritageModal .col-lg-6.p-5 {
+                padding: 1.5rem !important;
+            }
+            
+            #heritageModal h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            #heritageModal p {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 1.5rem 1rem !important;
+                font-size: 0.65rem !important;
+            }
+            
+            footer .container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Designer Modal Custom Styling */
         #designerModal .modal-content {
             background-color: var(--vaal-white);
             color: var(--vaal-black);
@@ -117,14 +349,39 @@
     <div id="loader"><div class="spinner"></div></div>
     <div id="scroll-progress"></div>
 
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">The Vaal Project</a>
-            <div class="ms-auto d-flex">
+            <!-- Desktop Navigation Links -->
+            <div class="desktop-nav-links">
                 <a class="nav-link" href="index.html#history"><i class="bi bi-arrow-left"></i> Back</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" type="button" data-bs-toggle="modal" data-bs-target="#navModal">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Modal -->
+    <div class="modal fade nav-modal" id="navModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="nav-modal-header">
+                    <a class="navbar-brand" href="index.html">The Vaal Project</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="nav-modal-body">
+                    <a class="modal-nav-link" href="index.html">Home</a>
+                    <a class="modal-nav-link" href="index.html#history">Back to History</a>
+                    <div class="modal-footer-links">
+                        <small>The Vaal Project &copy; 2026</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="detail-hero">
         <div class="hero-left" data-aos="fade-right"></div>
@@ -169,7 +426,7 @@
             <div class="milestone-year">1952</div>
             <div class="milestone-content">
                 <h4>Municipal Status</h4>
-                <p>The town attained municipal status following the opening of ISCOR’s second steelworks by Governor-General Dr. EG Jansen.</p>
+                <p>The town attained municipal status following the opening of ISCOR's second steelworks by Governor-General Dr. EG Jansen.</p>
             </div>
         </div>
 
@@ -226,36 +483,6 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-
-    <script>
-        AOS.init({ duration: 1000, once: true });
-        function openHeritageModal(imgSrc, title, description) {
-            document.getElementById('modalImg').style.backgroundImage = `url('${imgSrc}')`;
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = description;
-            new bootstrap.Modal(document.getElementById('heritageModal')).show();
-        }
-
-        window.addEventListener('load', () => { document.getElementById('loader').classList.add('loader-hidden'); });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) lenis.scrollTo(target);
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
-        });
-    </script>
-
     <div class="modal fade" id="designerModal" tabindex="-1" aria-labelledby="designerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
@@ -293,6 +520,68 @@
             </div>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        
+        function openHeritageModal(imgSrc, title, description) {
+            document.getElementById('modalImg').style.backgroundImage = `url('${imgSrc}')`;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+            new bootstrap.Modal(document.getElementById('heritageModal')).show();
+        }
+
+        window.addEventListener('load', () => { 
+            document.getElementById('loader').classList.add('loader-hidden'); 
+        });
+
+        const lenis = new Lenis();
+        function raf(time) { 
+            lenis.raf(time); 
+            requestAnimationFrame(raf); 
+        }
+        requestAnimationFrame(raf);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]:not(.modal-nav-link)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) lenis.scrollTo(target);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = progress + "%";
+        });
+        
+        // Handle mobile modal navigation - close modal then navigate
+        document.querySelectorAll('.modal-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const modalElement = document.getElementById('navModal');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                
+                if (modal) {
+                    modal.hide();
+                }
+                
+                // Small delay to allow modal close animation, then navigate
+                setTimeout(() => {
+                    if (href && href !== '#') {
+                        window.location.href = href;
+                    }
+                }, 200);
+            });
+        });
+    </script>
 </body>
 </html>

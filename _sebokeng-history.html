@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Sebokeng | The Vaal Project</title>
+    <meta name="description" content="A deep dive into the heritage and historical milestones of Sebokeng. From its industrial beginnings to its cultural significance in the Vaal.">
+    <meta name="keywords" content="Sebokeng History, Vaal Heritage, South African Townships, Sebokeng Milestones">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vaal-black: #111111;
+            --vaal-white: #ffffff;
+            --vaal-gray: #f8f8f8;
+            --vaal-dark-accent: #222;
+            --vaal-highlight: #7a1f1f; /* You can change this to a brand color like #FF4500 later */
+            --vaal-link: #cf3a3a;
+        }
+
+         /* --- Page Loader --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; display: flex; justify-content: center;
+            align-items: center; z-index: 10000; transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .spinner {
+            width: 40px; height: 40px; border: 4px solid #f3f3f3;
+            border-top: 4px solid #7a1f1f; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader-hidden { opacity: 0; visibility: hidden; }
+
+        /* --- Smooth Scroll Support (Lenis) --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* --- Progress Bar --- */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: #7a1f1f; z-index: 9999;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: var(--vaal-black); overflow-x: hidden; }
+
+        /* --- Unified Navigation --- */
+        .navbar { padding: 2rem 0; background: transparent; transition: 0.3s; z-index: 1000; }
+        .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; color: #fff !important; }
+        .nav-link { font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-left: 2rem; color: #fff !important; }
+
+        /* --- Split Hero Section --- */
+        .detail-hero { display: flex; flex-wrap: wrap; min-height: 100vh; background: var(--vaal-black); color: #fff; }
+        .hero-left { 
+            flex: 1; min-width: 50%; 
+            background: url('assests/sebokeng/hero.webp') center/cover no-repeat;
+            filter: grayscale(100%);
+        }
+        .hero-right { flex: 1; padding: 150px 8% 100px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-right h1 { font-size: 5.5rem; font-weight: 800; line-height: 0.9; letter-spacing: -4px; text-transform: uppercase; margin-bottom: 30px; }
+        .hero-right p { font-size: 1.1rem; line-height: 1.8; color: #ccc; max-width: 500px; }
+
+        /* --- Milestones Section --- */
+        .section-title { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; margin: 120px 0 60px; letter-spacing: -2px; }
+        .milestone-row { margin-bottom: 60px; display: flex; align-items: flex-start; }
+        .milestone-year { font-size: 4rem; font-weight: 800; min-width: 200px; letter-spacing: -3px; line-height: 1; }
+        .milestone-content { border-left: 3px solid #000; padding-left: 40px; flex-grow: 1; }
+        .milestone-content h4 { font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .milestone-content p { font-size: 1.1rem; color: #444; line-height: 1.6; }
+
+        /* --- Heritage Grid --- */
+        .heritage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 100px; }
+        .heritage-item { position: relative; aspect-ratio: 4/5; background: #000; overflow: hidden; cursor: pointer; }
+        .heritage-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0.7; filter: grayscale(100%); }
+        .heritage-item:hover img { transform: scale(1.1); opacity: 1; filter: grayscale(0%); }
+        .heritage-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: #fff; }
+        .heritage-overlay h4 { font-weight: 800; text-transform: uppercase; margin: 0; }
+
+        footer { background: var(--vaal-black); color: #fff; padding: 50px 0; text-align: center; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; }
+
+        @media (max-width: 992px) {
+            .hero-right h1 { font-size: 3.5rem; }
+            .hero-left { height: 40vh; flex: none; width: 100% !important; }
+            .milestone-row { flex-direction: column; }
+            .milestone-year { margin-bottom: 20px; }
+            .heritage-grid { grid-template-columns: 1fr; }
+        }
+
+          /* Designer Modal Custom Styling */
+        #designerModal .modal-content {
+            background-color: var(--vaal-white);
+            color: var(--vaal-black);
+        }
+        #designerModal h2 {
+            font-weight: 800;
+        }
+        #designerModal .fw-700 {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--vaal-highlight);
+        }
+        #designerModal li {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader"><div class="spinner"></div></div>
+    <div id="scroll-progress"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">The Vaal Project</a>
+            <div class="ms-auto d-flex">
+                <a class="nav-link" href="index.html#history"><i class="bi bi-arrow-left"></i> Back</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="detail-hero">
+        <div class="hero-left" data-aos="fade-right"></div>
+        <div class="hero-right" data-aos="fade-left">
+            <h1>Sebokeng<br>History</h1>
+            <p>Established in 1965, Sebokeng (meaning "gathering place" in Sesotho) was built as a residential area for Black South Africans working in the industrial "Vaal Triangle." [cite: 21, 23, 24]</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <h2 class="section-title" data-aos="fade-up">Key Milestones</h2>
+        
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">1965</div>
+            <div class="milestone-content">
+                <h4>Township Foundation</h4>
+                <p>The township was founded with the initial construction of 18,772 houses to house industrial laborers working in nearby Vanderbijlpark and Vereeniging. [cite: 24, 26]</p>
+            </div>
+        </div>
+
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">1983</div>
+            <div class="milestone-content">
+                <h4>Healthcare Infrastructure</h4>
+                <p>Sebokeng Hospital officially opened on February 1, 1983, to serve the rapidly growing population of the region. [cite: 35]</p>
+            </div>
+        </div>
+
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">1984</div>
+            <div class="milestone-content">
+                <h4>Rent Boycotts</h4>
+                <p>In September 1984, Sebokeng became a flashpoint for national unrest as residents boycotted rent and service tariffs, leading to clashes that catalyzed national civil unrest. [cite: 27, 28]</p>
+            </div>
+        </div>
+
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">1990</div>
+            <div class="milestone-content">
+                <h4>Sebokeng Shooting</h4>
+                <p>On March 26, 1990, police opened fire on anti-apartheid protesters, an event that led to the landmark Goldstone Commission inquiry into public violence. [cite: 29, 30]</p>
+            </div>
+        </div>
+
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">1991</div>
+            <div class="milestone-content">
+                <h4>Vigil Massacre</h4>
+                <p>Gunmen attacked a night vigil for community leader Christopher Nangalembe on January 12, killing 39 people and nearly derailing negotiations to end apartheid. [cite: 31, 32]</p>
+            </div>
+        </div>
+
+        <div class="milestone-row" data-aos="fade-up">
+            <div class="milestone-year">2007</div>
+            <div class="milestone-content">
+                <h4>Economic Growth</h4>
+                <p>The opening of Thabong Mall in 2007 marked a significant post-1994 commercial development for the township. [cite: 34]</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="container">
+        <h2 class="section-title" data-aos="fade-up">Heritage Sites</h2>
+        <div class="heritage-grid">
+            <div class="heritage-item" data-aos="zoom-in" onclick="openHeritageModal('assests/sebokeng/Nangalembe Memorial.jpeg', 'Christopher Nangalembe Memorial', 'Located in Zone 7, this park serves as a reminder of the activists who died during the struggle for democracy. ')">
+                <img src="assests/sebokeng/Nangalembe Memorial.jpeg" alt="Nangalembe Park">
+                <div class="heritage-overlay"><h4>Nangalembe Memorial</h4></div>
+            </div>
+            <div class="heritage-item" data-aos="zoom-in" data-aos-delay="100" onclick="openHeritageModal('assests/sebokeng/Thabong.Mall.webp', 'Thabong Mall', 'Originally a small plaza, its expansion into a major mall symbolizes the economic growth and modernization of the township.')">
+                <img src="assests/sebokeng//Thabong.Mall_thumb.webp" alt="Sharpeville">
+                <div class="heritage-overlay"><h4>Thabong Mall</h4></div>
+            </div>
+            <div class="heritage-item" data-aos="zoom-in" data-aos-delay="200" onclick="openHeritageModal('assests/sebokeng/Moshoeshoe.Road.jpg', 'Moshoeshoe Road', 'The longest main road in the township, named after the iconic Sotho King Moshoeshoe.')">
+                <img src="assests/sebokeng/Moshoeshoe.Road_thumb.webp" alt="Archive">
+                <div class="heritage-overlay"><h4>Moshoeshoe Road</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="heritageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content border-0 bg-white overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <div id="modalImg" style="height: 600px; background: center/cover no-repeat;"></div>
+                    </div>
+                    <div class="col-lg-6 p-5 d-flex flex-column justify-content-center">
+                        <button type="button" class="btn-close ms-auto mb-4" data-bs-dismiss="modal"></button>
+                        <h3 id="modalTitle" class="display-4 fw-bolder text-uppercase"></h3>
+                        <p id="modalDescription" class="lead text-muted"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            The Vaal Project &copy; 2026 | 
+            <span style="text-transform: none; font-weight: 400;">
+                Designed by: <a href="#" data-bs-toggle="modal" data-bs-target="#designerModal" style="color: var(--vaal-link); text-decoration: none; font-weight: 700;">I'm Jacob</a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        function openHeritageModal(imgSrc, title, description) {
+            document.getElementById('modalImg').style.backgroundImage = `url('${imgSrc}')`;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+            new bootstrap.Modal(document.getElementById('heritageModal')).show();
+        }
+
+        window.addEventListener('load', () => { document.getElementById('loader').classList.add('loader-hidden'); });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) lenis.scrollTo(target);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
+        });
+    </script>
+
+    <div class="modal fade" id="designerModal" tabindex="-1" aria-labelledby="designerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="bi bi-person-badge text-dark" style="font-size: 3rem;"></i>
+                    </div>
+                    <h2 class="fw-800 text-uppercase mb-3" style="letter-spacing: -1px;">I'm Jacob</h2>
+                    <p class="text-muted mb-4">Web Developer . Graphic Designer . Technician</p>
+                    <hr class="w-25 mx-auto mb-4">
+                    
+                    <h6 class="text-uppercase fw-700 mb-3">Services</h6>
+                    <ul class="list-unstyled mb-4">
+                        <li>Website Design</li>
+                        <li>Graphic Design</li>
+                        <li>UI/UX Design</li>
+                        <li>Technician</li>
+                    </ul>
+
+                    <h6 class="text-uppercase fw-700 mb-3">Contact</h6>
+                    <p class="mb-1">
+                        <a href="mailto:ntsoele.sello@protonmail.com" class="text-decoration-none text-dark">
+                            <i class="bi bi-envelope-fill me-2"></i>ntsoele.sello@protonmail.com
+                        </a>
+                    </p>
+                    <p>
+                        <a href="tel:0753170287" class="text-decoration-none text-dark">
+                            <i class="bi bi-telephone-fill me-2"></i>0753170287
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

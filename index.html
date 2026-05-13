@@ -55,10 +55,96 @@
 
         body { font-family: 'Inter', sans-serif; color: var(--vaal-black); overflow-x: hidden; }
 
-        /* --- Navigation --- */
+        /* --- Navigation (Desktop) --- */
         .navbar { padding: 2rem 0; background: transparent; transition: 0.3s; z-index: 1000; }
         .navbar-brand { font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        .nav-link { font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-left: 2rem; }
+        
+        /* Desktop nav links - visible on larger screens */
+        .desktop-nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .desktop-nav-links .nav-link { 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--vaal-black);
+        }
+        
+        /* Mobile menu button - hidden on desktop */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--vaal-black);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* Navigation Modal Styling */
+        .nav-modal .modal-dialog {
+            margin: 0;
+            max-width: none;
+        }
+        
+        .nav-modal .modal-content {
+            min-height: 100vh;
+            border-radius: 0;
+            background: var(--vaal-white);
+            border: none;
+        }
+        
+        .nav-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-modal-header .navbar-brand {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        .nav-modal-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+        
+        .modal-nav-link {
+            display: block;
+            text-align: center;
+            padding: 1.25rem 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            color: var(--vaal-black);
+            text-decoration: none;
+            width: 100%;
+            transition: 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .modal-nav-link:active {
+            color: var(--vaal-highlight);
+            padding-left: 0.5rem;
+        }
+        
+        .modal-footer-links {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #666;
+        }
 
         /* --- Hero Section --- */
         .hero-section { height: 100vh; display: flex; align-items: center; padding-top: 100px; }
@@ -279,7 +365,290 @@
             margin-bottom: 5px;
         }
 
-       
+        /* --- MOBILE STYLES (max-width 480px) --- */
+        @media (max-width: 480px) {
+            /* Hide desktop nav links on mobile */
+            .desktop-nav-links {
+                display: none !important;
+            }
+            
+            /* Show mobile menu button */
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            /* Adjust navbar for mobile */
+            .navbar {
+                padding: 0.75rem 0 !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: blur(8px);
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            }
+            
+            .navbar .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            /* Hero Section */
+            .hero-section {
+                margin-top: 0;
+                min-height: auto !important;
+                height: auto !important;
+                padding: 100px 0 3rem 0 !important;
+            }
+            
+            .hero-title {
+                width: 100%;
+                padding: 20px 0;
+                height: 140px;
+                text-align: center;
+                font-size: 2.8rem !important;
+                min-height: auto !important;
+                line-height: 1.1 !important;
+                letter-spacing: -1.5px !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .intro-text-box {
+                max-width: 100% !important;
+                padding-left: 1.25rem !important;
+                margin-top: 1rem;
+            }
+            
+            .intro-header {
+                font-size: 1.8rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .intro-tag {
+                font-size: 0.7rem !important;
+            }
+            
+            .intro-text-box p {
+                font-size: 0.9rem !important;
+                line-height: 1.5;
+            }
+            
+            /* Mind Map Section */
+            .mind-map-section {
+                min-height: auto !important;
+                padding-top: 120px !important;
+            }
+            
+            .mind-map-section .history-title {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .mind-map-section .lead {
+                font-size: 0.85rem !important;
+            }
+            
+            .mermaid-container {
+                padding: 0.5rem !important;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .mermaid {
+                min-width: 550px;
+                min-height: 200px !important;
+            }
+            
+            .mermaid .node text {
+                font-size: 0.75rem !important;
+            }
+            
+            .mermaid .root text {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Video Section */
+            .video-intro-container {padding-top: 80px !important; background-color: var(--vaal-gray);}
+            .hero-video-full {
+                height: 60vh !important;
+                min-height: 320px !important;
+            }
+            
+            .overlay-content .history-title {
+                font-size: 1.5rem !important;
+            }
+            
+            .btn-outline-light {
+                padding: 0.5rem 1.2rem !important;
+                font-size: 0.85rem !important;
+            }
+            
+            /* History Section - vertical stack */
+            .history-section {
+                padding-top: 60px;
+                margin-bottom: 80px;
+                flex-direction: column !important;
+                min-height: auto !important;
+            }
+            
+            .history-left {
+                padding-top: 60px;
+               margin-bottom: 60px;
+                min-width: auto !important;
+            }
+            .history-right {padding: 120px 30px !important;}
+            
+            .history-title {
+                font-size: 2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .history-right .history-title {
+                text-align: center !important;
+            }
+            
+            .location-box {
+                margin-bottom: 1.5rem !important;
+                padding-left: 0.875rem !important;
+            }
+            
+            .location-box h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .location-box p {
+                font-size: 0.8rem !important;
+            }
+            
+            /* Influencer Cards - 2 column grid */
+            .history-right .row {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            
+           
+            
+            .influencer-card {
+                margin-bottom: 1rem !important;
+            }
+            
+            .influencer-img {
+                width: 100% !important;
+                height: auto !important;
+                margin: 0 auto 0.75rem !important;
+            }
+            
+            .influencer-card h5 {
+                font-size: 0.8rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .influencer-card p {
+                font-size: 0.7rem !important;
+                padding: 0 0.25rem !important;
+            }
+            
+            /* Map Section */
+            .map-section {
+                min-height: auto !important;
+                padding: 2.5rem 1rem !important;
+            }
+            
+            .map-section .history-title {
+                font-size: 2rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .map-section iframe {
+                height: 280px !important;
+                margin-top: 1rem !important;
+            }
+            
+            /* Creator Profile */
+            .creator-profile {
+                padding: 80px 5px !important;
+            }
+            
+            .creator-profile .container {
+                padding: 0 1rem !important;
+            }
+            
+            .creator-profile .row {
+                flex-direction: column;
+            }
+            
+            .creator-profile .influencer-img {
+                width: 200px !important;
+                height: 200px !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .creator-profile .history-title {
+                font-size: 1.8rem !important;
+                text-align: center !important;
+            }
+            
+            .creator-profile .intro-tag {
+                text-align: center;
+                display: block;
+            }
+            
+            .creator-profile p {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 1.5rem 1rem !important;
+                font-size: 0.65rem !important;
+            }
+            
+            footer .container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            /* Modal adjustments */
+            .modal-body {
+                padding: 1.5rem !important;
+            }
+            
+            .modal-body h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .modal-body p, .modal-body li {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Touch-friendly tap targets */
+            .mobile-menu-btn, 
+            .location-link, 
+            .influencer-card,
+            .btn-outline-light,
+            .modal-nav-link {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .location-link:active .location-box {
+                border-left-color: var(--vaal-highlight);
+                transform: translateX(4px);
+            }
+            
+            .influencer-card:active .influencer-img {
+                filter: grayscale(0%);
+                transform: scale(0.97);
+            }
+        }
     </style>
     <script src="https://www.youtube.com/iframe_api"></script>
 </head>
@@ -288,18 +657,46 @@
     <div id="loader"><div class="spinner"></div></div>
     <div id="scroll-progress"></div>
 
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">The Vaal Project</a>
-            <div class="ms-auto d-flex">
+            <!-- Desktop Navigation Links -->
+            <div class="desktop-nav-links">
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#mindmap">Mind Map</a>
                 <a class="nav-link" href="#intro">Intro</a>
                 <a class="nav-link" href="#history">Influencers</a>
                 <a class="nav-link" href="#history">Vaal Places</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" type="button" data-bs-toggle="modal" data-bs-target="#navModal">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Modal -->
+    <div class="modal fade nav-modal" id="navModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="nav-modal-header">
+                    <a class="navbar-brand" href="#">The Vaal Project</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="nav-modal-body">
+                    <a class="modal-nav-link" href="#about" data-bs-dismiss="modal">About</a>
+                    <a class="modal-nav-link" href="#mindmap" data-bs-dismiss="modal">Mind Map</a>
+                    <a class="modal-nav-link" href="#intro" data-bs-dismiss="modal">Intro Video</a>
+                    <a class="modal-nav-link" href="#history" data-bs-dismiss="modal">Influencers</a>
+                    <a class="modal-nav-link" href="#history" data-bs-dismiss="modal">Vaal Places</a>
+                    <div class="modal-footer-links">
+                        <small>The Vaal Project &copy; 2026</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="hero-section container" id="about">
         <div class="row w-100">
@@ -313,7 +710,7 @@
                     <p>
                         This interactive documentary is structured around four key themes drawn from the capability approach, 
                         which guide both the collection and interpretation of data. These themes—environmental, social, psychological, and physical capability—provide 
-                        a framework for understanding the different factors that shape an individual’s potential to succeed as a social media influencer.
+                        a framework for understanding the different factors that shape an individual's potential to succeed as a social media influencer.
                         Throughout the documentary, each theme is explored through participant interviews, offering insight into how these capabilities are experienced 
                         and developed in real contexts. By engaging with these perspectives, the documentary seeks to highlight which capabilities and practices are 
                         most effective in supporting the growth and success of emerging influencers.
@@ -324,18 +721,18 @@
     </section>
 
     <!-- Mind Map Section -->
-<section id="mindmap" class="mind-map-section">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="intro-tag">Explore the Connections</span>
-            <h2 class="history-title">The Vaal Project Mind Map</h2>
-            <p class="lead text-muted mx-auto" style="max-width: 700px;">
-                An interactive overview of the project structure, themes, and key elements.
-            </p>
-        </div>
+    <section id="mindmap" class="mind-map-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="intro-tag">Explore the Connections</span>
+                <h2 class="history-title">The Vaal Project Mind Map</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                    An interactive overview of the project structure, themes, and key elements.
+                </p>
+            </div>
 
-        <div class="mermaid-container" data-aos="fade-up" data-aos-delay="200">
-<div class="mermaid">
+            <div class="mermaid-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="mermaid">
 ---
 config:
   layout: tidy-tree
@@ -352,12 +749,10 @@ mindmap
       id(<a href="tumelo.html"><i class="fa fa-link" aria-hidden="true"></i> Tumelo</a>)
       id(<a href="paul.html"><i class="fa fa-link" aria-hidden="true"></i> Paul</a>)
       id(<a href="syre-magnolian.html"><i class="fa fa-link" aria-hidden="true"></i> Syre Magnolian</a>)
-</div>
+                </div>
+            </div>
         </div>
-
-
-    </div>
-</section>
+    </section>
 
     <section id="intro" class="video-intro-container">
         <div class="hero-video-full">
@@ -372,7 +767,7 @@ mindmap
     </section>
 
     <section class="history-section" id="history">
-        <div class="history-left" data-aos="fade-right">
+        <div class="history-left" data-aos="fade-up">
             <h2 class="history-title">History of <br>The Vaal</h2>
             <a href="sebokeng-history.html" class="location-link">
                 <div class="location-box"><h4>Sebokeng</h4><p>A place of rich heritage and resilient spirits.</p></div>
@@ -382,28 +777,25 @@ mindmap
             </a>
         </div>
         
-        <div class="history-right" data-aos="fade-left">
+        <div class="history-right" data-aos="fade-up">
             <h2 class="history-title text-center">Social Media <br>Influencers</h2>
             <div class="row mt-2">
                 <div class="col-md-4">
                     <a href="paul.html" class="influencer-card">
-                        <div class="influencer-img"><img src="assests/paul/profile_photo.webp"/></div>
+                        <div class="influencer-img"><img src="assests/paul/profile_photo.webp" alt="Paul"/></div>
                         <h5>Paul</h5>
-                        <!--<p>[Short Bio Here]</p>-->
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="syre-magnolian.html" class="influencer-card">
-                        <div class="influencer-img"><img src="assests/bongani/profile_photo.webp"/></div>
+                        <div class="influencer-img"><img src="assests/bongani/profile_photo.webp" alt="Syre Magnolian"/></div>
                         <h5>Syre Magnolian</h5>
-                        <!--<p>[Short Bio Here]</p>-->
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="tumelo.html" class="influencer-card">
-                        <div class="influencer-img"><img src="assests/tumelo/profile_photo.webp"/></div>
+                        <div class="influencer-img"><img src="assests/tumelo/profile_photo.webp" alt="Tumelo"/></div>
                         <h5>Tumelo</h5>
-                        <!--<p>[Short Bio Here]</p>-->
                     </a>
                 </div>
             </div>
@@ -449,13 +841,13 @@ mindmap
     </section>
 
     <footer>
-    <div class="container">
-        The Vaal Project &copy; 2026 | 
-        <span style="text-transform: none; font-weight: 400;">
-            Designed by: <a href="#" data-bs-toggle="modal" data-bs-target="#designerModal" style="color: var(--vaal-link); text-decoration: none; font-weight: 700;">I'm Jacob</a>
-        </span>
-    </div>
-</footer>
+        <div class="container">
+            The Vaal Project &copy; 2026 | 
+            <span style="text-transform: none; font-weight: 400;">
+                Designed by: <a href="#" data-bs-toggle="modal" data-bs-target="#designerModal" style="color: var(--vaal-link); text-decoration: none; font-weight: 700;">I'm Jacob</a>
+            </span>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -463,84 +855,90 @@ mindmap
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 
     <script>
-        window.addEventListener('load', () => { document.getElementById('loader').classList.add('loader-hidden'); });
+    window.addEventListener('load', () => { document.getElementById('loader').classList.add('loader-hidden'); });
 
-        AOS.init({ duration: 1000, once: true });
+    AOS.init({ duration: 1000, once: true });
 
-        // Looping Typewriter Setup with Highlights
-        const title = document.getElementById('typewriter-title');
-        const typewriter = new Typewriter(title, {
-            loop: true,
-            delay: 75,
-            deleteSpeed: 50,
-            cursor: '|'
-        });
-
-        typewriter
-            .pauseFor(1000)
-            .typeString('The Vaal<br><span class="text-highlight">Project</span>')
-            .pauseFor(2500)
-            .deleteAll()
-            .typeString('The Vaal<br><span class="text-highlight">History</span>')
-            .pauseFor(2500)
-            .deleteAll()
-            .typeString('The Vaal<br><span class="text-highlight">People</span>')
-            .pauseFor(2500)
-            .start();
-
-        const lenis = new Lenis();
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) lenis.scrollTo(target);
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
-        });
-
-     
-
-// 1. This function is called automatically by the API
-let player;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        videoId: 'TpzYMb7djOI',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 1,
-            'rel': 0,
-            'modestbranding': 1
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
+    // Looping Typewriter Setup with Highlights
+    const title = document.getElementById('typewriter-title');
+    const typewriter = new Typewriter(title, {
+        loop: true,
+        delay: 75,
+        deleteSpeed: 50,
+        cursor: '|'
     });
-}
 
-function onPlayerStateChange(event) {
-    const cover = document.getElementById('video-cover');
-    // State 0 is "ENDED"
-    if (event.data === YT.PlayerState.ENDED) {
-        cover.classList.add('active');
-    } else if (event.data === YT.PlayerState.PLAYING) {
-        cover.classList.remove('active');
+    typewriter
+        .pauseFor(1000)
+        .typeString('The Vaal<br><span class="text-highlight">Project</span>')
+        .pauseFor(2500)
+        .deleteAll()
+        .typeString('The Vaal<br><span class="text-highlight">History</span>')
+        .pauseFor(2500)
+        .deleteAll()
+        .typeString('The Vaal<br><span class="text-highlight">People</span>')
+        .pauseFor(2500)
+        .start();
+
+    const lenis = new Lenis();
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) lenis.scrollTo(target);
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%";
+    });
+
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: 'TpzYMb7djOI',
+            playerVars: {
+                'autoplay': 0,
+                'controls': 1,
+                'rel': 0,
+                'modestbranding': 1
+            },
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
     }
-}
 
-function replayVideo() {
-    player.playVideo();
-    document.getElementById('video-cover').classList.remove('active');
-}
-    </script>
+    function onPlayerStateChange(event) {
+        const cover = document.getElementById('video-cover');
+        if (event.data === YT.PlayerState.ENDED) {
+            cover.classList.add('active');
+        } else if (event.data === YT.PlayerState.PLAYING) {
+            cover.classList.remove('active');
+        }
+    }
+
+    function replayVideo() {
+        player.playVideo();
+        document.getElementById('video-cover').classList.remove('active');
+    }
+    
+    // Force close modal when any modal link is clicked
+    document.querySelectorAll('.modal-nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('navModal'));
+            if (modal) {
+                modal.hide();
+            }
+        });
+    });
+</script>
 
     <div class="modal fade" id="designerModal" tabindex="-1" aria-labelledby="designerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -580,44 +978,40 @@ function replayVideo() {
         </div>
     </div>
 
+    <!-- Mermaid with Tidy-Tree Layout Support -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        import tidyTreeLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-tidy-tree@0/dist/mermaid-layout-tidy-tree.esm.min.mjs';
 
-<!-- Mermaid with Tidy-Tree Layout Support -->
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    import tidyTreeLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-tidy-tree@0/dist/mermaid-layout-tidy-tree.esm.min.mjs';
+        mermaid.registerLayoutLoaders(tidyTreeLayouts);
 
-    // Register the tidy-tree layout engine
-    mermaid.registerLayoutLoaders(tidyTreeLayouts);
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'base',
+            themeVariables: {
+                'lineColor': '#111111',
+                'textColor': '#111111',
+                'mainBkg': '#ffffff',
+                'nodeBorder': '#7a1f1f',
+                'nodeTextColor': '#111111',
+                'primaryColor': '#ffffff',
+                'primaryTextColor': '#111111',
+                'primaryBorderColor': '#7a1f1f'
+            },
+            mindmap: {
+                useMaxWidth: true
+            }
+        });
 
-    // Global configuration
-    mermaid.initialize({
-        startOnLoad: false,
-        theme: 'base',
-        themeVariables: {
-            'lineColor': '#111111',
-            'textColor': '#111111',
-            'mainBkg': '#ffffff',
-            'nodeBorder': '#7a1f1f',
-            'nodeTextColor': '#111111',
-            'primaryColor': '#ffffff',
-            'primaryTextColor': '#111111',
-            'primaryBorderColor': '#7a1f1f'
-        },
-        mindmap: {
-            useMaxWidth: true
-        }
-    });
-
-    // Render the diagram
-    document.addEventListener('DOMContentLoaded', async () => {
-        try {
-            await mermaid.run({
-                nodes: document.querySelectorAll('.mermaid')
-            });
-        } catch (err) {
-            console.error('Mermaid rendering error:', err);
-        }
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await mermaid.run({
+                    nodes: document.querySelectorAll('.mermaid')
+                });
+            } catch (err) {
+                console.error('Mermaid rendering error:', err);
+            }
+        });
+    </script>
 </body>
 </html>
